@@ -7,7 +7,7 @@ my_hand = []
 opponent_hand = []
 exit = False
 
-
+print('try push')
 def draw(cards, owner):
     if len(deck) >= cards:
         for i in range(0, cards):
