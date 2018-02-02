@@ -58,27 +58,26 @@ def check_hands(hand):
         return hand[2]
 
 def search_fish(giver,receiver,t):
-
-        i=0
-        for each in giver[1]:
-            if each == t:
-                i+=1
-            # else:
-            #     print(each,'not equal to',t )
-        for j in range(i):
-            giver[1].remove(t)
-            receiver[1].append(t)
-        print(giver[0],"gives ",receiver[0],i, t,'.')
-
-        if i == 0 :
-            print('Go fish!')
-            drawn_card=draw(1,receiver[1],receiver[0])[0]
-            if drawn_card != t:
-                return False
-            elif  drawn_card == t:
-                return True
-        elif i !=0:
+    number = {0:'zero',1:'one',2:'two',3:'three',4:'four'}
+    i=0
+    for each in giver[1]:
+        if each == t:
+            i+=1
+        # else:
+        #     print(each,'not equal to',t )
+    for j in range(i):
+        giver[1].remove(t)
+        receiver[1].append(t)
+    print(giver[0],"gives ",receiver[0],number[i], t,'.\n')
+    if i == 0 :
+        print('Go fish!\n')
+        drawn_card=draw(1,receiver[1],receiver[0])[0]
+        if drawn_card != t:
+            return False
+        elif  drawn_card == t:
             return True
+    elif i !=0:
+        return True
 
 
 def print_result(this_hand,other_hand):
@@ -112,6 +111,7 @@ def start_game():
         while iterate:
 
             t = input("%r, please choose a card from your hand to ask the opponent, or 'exit' to exit:\n" % this_hand[0])
+            print('\n')
             t = t.lower()
             while t == 'exit' or t not in this_hand[1]:
                 if t == "exit":
@@ -121,7 +121,7 @@ def start_game():
                 elif t not in this_hand[1] :
                     print("Sorry, you didn't choose a card from your hand.",'\n')
                     t = input( "%r ,please choose a card from your hand to ask the opponent, or 'exit' to exit:\n" % this_hand[0])
-
+                    print('\n')
             if t == "exit":
                 exit = True
                 break
@@ -151,3 +151,4 @@ def start_game():
 
 start_game()
 
+# search_fish([1,[0,1],1],[2,[1,2],0],3)
