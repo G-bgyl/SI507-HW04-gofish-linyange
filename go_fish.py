@@ -14,7 +14,7 @@ pointer={0:['Alice',my_hand,my_score],1:['Bob',opponent_hand,opponent_score]}
 my_score = 0
 opponent_score = 0
 
-def draw(cards, owner,name,exit = False):
+def draw(cards,owner,name,exit):
     if len(deck) >= cards:
         for i in range(0, cards):
             drawn_card = deck.pop((int)(random.random() * len(deck)))
@@ -29,11 +29,12 @@ def draw(cards, owner,name,exit = False):
         print("No more cards in the deck.\n")
         if not my_hand and not opponent_hand:
             exit = True
+        drawn_card = None
     if name=='Alice':
         print("Alicia's hand:", my_hand,'\n')
     elif name=='Bob':
         print("Bob's hand:", opponent_hand,'\n')
-    drawn_card=None
+    # put drawn_card into else: and it works! magic!
     # print(drawn_card, exit)
     re = (drawn_card, exit)
     return re
@@ -71,7 +72,7 @@ def search_fish(giver,receiver,t):
     print(giver[0],"gives ",receiver[0],number[i], t,'.\n')
     if i == 0 :
         print('Go fish!\n')
-        drawn_card=draw(1,receiver[1],receiver[0])[0]
+        drawn_card=draw(1,receiver[1],receiver[0],False)[0]
         if drawn_card != t:
             return False
         elif  drawn_card == t:
@@ -94,8 +95,8 @@ def print_result(this_hand,other_hand):
 
 def start_game():
     print('Let\'s begin!')
-    draw(7, my_hand,'Alice')
-    draw(7, opponent_hand,'Bob')
+    draw(7, my_hand,'Alice',False)
+    draw(7, opponent_hand,'Bob',False)
 
     exit = False
 
@@ -131,12 +132,12 @@ def start_game():
                 this_hand[2] = check_hands(this_hand)
 
             if len(this_hand[1])==0:
-                result = (0,'k')
-                result = draw(1,this_hand[1],this_hand[0])
+                #result = (0,'k')
+                result = draw(1,this_hand[1],this_hand[0],False)
                 exit=result[1]
             if len(other_hand[1])==0:
-                result_1 = (0, 'k')
-                result_1 = draw(1,other_hand[1],other_hand[0])
+                # result_1 = (0, 'k')
+                result_1 = draw(1,other_hand[1],other_hand[0],False)
                 exit = result_1[1]
             if len(this_hand[1])!=0 and len(other_hand[1])!=0:
                 print('\n\nAlice:',my_hand,'\nBob:',opponent_hand,'\n\n')
