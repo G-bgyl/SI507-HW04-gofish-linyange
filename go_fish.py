@@ -1,9 +1,10 @@
 import random
 
-deck = [ '4', '4', '4', '4', '5', '5', '5', '5', '6',
-        '6', '6', '6', '7', '7', '7', '7']
-''''ace', 'ace', 'ace', 'ace', '2', '2', '2', '2', '3', '3', '3', '3',     , '8', '8', '8', '8', '9', '9', '9', '9', '10', '10', '10', '10', 'jack',
-        'jack', 'jack', 'jack', 'queen', 'queen', 'queen', 'queen', 'king', 'king', 'king', 'king' '''
+deck = ['ace', 'ace', 'ace', 'ace', '2', '2', '2', '2', '3', '3', '3', '3', '4', '4', '4', '4', '5', '5', '5', '5', '6',
+        '6', '6', '6', '7', '7', '7', '7', '8', '8', '8', '8', '9', '9', '9', '9', '10', '10', '10', '10', 'jack',
+        'jack', 'jack', 'jack', 'queen', 'queen', 'queen', 'queen', 'king', 'king', 'king', 'king']
+
+#initialize
 my_hand = []
 opponent_hand = []
 my_score = 0
@@ -33,9 +34,11 @@ def draw(cards, owner,name,exit = False):
     elif name=='Bob':
         print("Bob's hand:", opponent_hand,'\n')
     drawn_card=None
-    print(drawn_card, exit)
+    # print(drawn_card, exit)
     re = (drawn_card, exit)
     return re
+
+
 def check_hands(hand):
     i=0
     for each in hand[1]:  # checks hand for duplicates
